@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora Simples</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .calculadora {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 300px;
+      text-align: center;
+    }
+
+    .calculadora h2 {
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .resultado {
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculadora">
+    <h2>Calculadora</h2>
+    <input type="number" id="n1" placeholder="Digite o primeiro número">
+    <input type="number" id="n2" placeholder="Digite o segundo número">
+    
+    <select id="operacao">
+      <option value="1">Adição</option>
+      <option value="2">Subtração</option>
+      <option value="3">Multiplicação</option>
+      <option value="4">Divisão</option>
+    </select>
+    
+    <button onclick="calcular()">Calcular</button>
+    <div class="resultado" id="resultado"></div>
+  </div>
+
+  <script>
+    function calcular() {
+      const n1 = parseFloat(document.getElementById('n1').value);
+      const n2 = parseFloat(document.getElementById('n2').value);
+      const op = parseInt(document.getElementById('operacao').value);
+      let resultado = 0;
+
+      switch(op) {
+        case 1:
+          resultado = n1 + n2;
+          break;
+        case 2:
+          resultado = n1 - n2;
+          break;
+        case 3:
+          resultado = n1 * n2;
+          break;
+        case 4:
+          if (n2 === 0) {
+            document.getElementById('resultado').innerText = "Erro: divisão por zero!";
+            return;
+          }
+          resultado = n1 / n2;
+          break;
+        default:
+          resultado = "Operação inválida";
+      }
+
+      document.getElementById('resultado').innerText = "Resultado: " + resultado;
+    }
+  </script>
+</body>
+</html>
+
